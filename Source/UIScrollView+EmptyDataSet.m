@@ -441,7 +441,12 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         return;
     }
     
-    if (([self dzn_shouldDisplay] && [self dzn_itemsCount] == 0) || [self dzn_shouldBeForcedToDisplay])
+    int numberOfItemsForEmptyTable = 0;
+    if([self.emptyDataSetSource respondsToSelector:@selector(numberOfItemsForEmptyTable)]) {
+        numberOfItemsForEmptyTable = [[self emptyDataSetSource] numberOfItemsForEmptyTable];
+    }
+    
+    if (([self dzn_shouldDisplay] && [self dzn_itemsCount] == numberOfItemsForEmptyTable) || [self dzn_shouldBeForcedToDisplay])
     {
         // Notifies that the empty dataset view will appear
         [self dzn_willAppear];
