@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DZNEmptyDataSetSource <NSObject>
 @optional
 
+-(int)numberOfItemsForEmptyTable;
+
 /**
  Asks the data source for the title of the dataset.
  The dataset uses a fixed font style by default, if no attributes are set. If you want a different font style, return a attributed string.
